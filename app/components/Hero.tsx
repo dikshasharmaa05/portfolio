@@ -64,7 +64,7 @@ export default function Hero() {
             }}
           >
             <Image
-              src="/diksha.jpg"
+              src="/Gemini_Generated_Image_qnurgrqnurgrqnur.png"
               alt="Diksha Sharma"
               fill
               className="object-cover object-top"
