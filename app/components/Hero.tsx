@@ -11,35 +11,37 @@ const tools = [
   { label: "Web Push",   icon: "🔔" },
 ];
 
+const PHOTO = "/Gemini_Generated_Image_qnurgrqnurgrqnur.png";
+
 export default function Hero() {
   return (
     <section id="home" className="px-4 md:px-8 pb-6">
-      <motion.div
-        initial={{ opacity: 0, y: 30 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.6 }}
+      {/* Outer div holds the background — never animated so bg always renders */}
+      <div
         className="relative rounded-3xl overflow-hidden"
         style={{
-          minHeight: "580px",
-          backgroundColor: "#000",
-          backgroundImage: "url('/Gemini_Generated_Image_qnurgrqnurgrqnur.png')",
+          minHeight: 580,
+          backgroundImage: `url(${PHOTO})`,
           backgroundSize: "cover",
           backgroundPosition: "center top",
+          backgroundColor: "#000",
         }}
       >
-        {/* Subtle left fade so text is readable */}
-        <div className="absolute inset-y-0 left-0 w-[40%] bg-gradient-to-r from-black/80 to-transparent pointer-events-none" />
-        {/* Subtle bottom fade */}
-        <div className="absolute inset-x-0 bottom-0 h-[25%] bg-gradient-to-t from-black/70 to-transparent pointer-events-none" />
+        {/* Left fade for text readability */}
+        <div className="absolute inset-y-0 left-0 w-2/5 bg-gradient-to-r from-black/80 to-transparent pointer-events-none" />
+        {/* Bottom fade */}
+        <div className="absolute inset-x-0 bottom-0 h-1/4 bg-gradient-to-t from-black/60 to-transparent pointer-events-none" />
 
-        {/* ── Content on top ── */}
-        <div
+        {/* Content fades in separately */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6 }}
           className="relative z-10 flex flex-col justify-between p-8 md:p-12"
-          style={{ minHeight: "580px" }}
+          style={{ minHeight: 580 }}
         >
           {/* Top row */}
           <div className="flex items-start justify-between">
-            {/* Left */}
             <div className="flex flex-col gap-5 max-w-[380px]">
               <span className="text-[#CCFF00] font-medium text-base">Hey 👋 I&apos;m Diksha</span>
               <h1 className="text-white text-5xl md:text-6xl lg:text-[72px] font-bold leading-[1.05]">
@@ -54,16 +56,12 @@ export default function Hero() {
               </button>
             </div>
 
-            {/* Right — Experienced in */}
-            <div className="hidden md:flex flex-col gap-3 bg-black/60 backdrop-blur-sm rounded-2xl p-4 border border-white/5">
+            <div className="hidden md:flex flex-col gap-3 bg-black/50 backdrop-blur-sm rounded-2xl p-4 border border-white/5">
               <p className="text-xs text-gray-400">Experienced in</p>
               <div className="grid grid-cols-3 gap-2">
                 {tools.map((tool) => (
-                  <div
-                    key={tool.label}
-                    title={tool.label}
-                    className="w-11 h-11 rounded-xl bg-white/10 flex items-center justify-center text-base"
-                  >
+                  <div key={tool.label} title={tool.label}
+                    className="w-11 h-11 rounded-xl bg-white/10 flex items-center justify-center text-base">
                     {tool.icon}
                   </div>
                 ))}
@@ -89,8 +87,8 @@ export default function Hero() {
               ))}
             </div>
           </div>
-        </div>
-      </motion.div>
+        </motion.div>
+      </div>
     </section>
   );
 }
