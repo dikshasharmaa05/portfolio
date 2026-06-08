@@ -1,95 +1,90 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { ArrowDown } from "lucide-react";
 
-const fadeUp = (delay = 0) => ({
-  initial: { opacity: 0, y: 40 },
-  animate: { opacity: 1, y: 0 },
-  transition: { duration: 0.7, ease: [0.25, 0.1, 0.25, 1] as [number,number,number,number], delay },
-});
+const tools = [
+  { label: "Sketch",     bg: "bg-orange-100", icon: "💎" },
+  { label: "Framer",     bg: "bg-purple-100", icon: "🖼" },
+  { label: "Figma",      bg: "bg-pink-100",   icon: "🎨" },
+  { label: "Webflow",    bg: "bg-blue-100",   icon: "🌐" },
+  { label: "After Fx",   bg: "bg-indigo-100", icon: "🎬" },
+];
 
 export default function Hero() {
   return (
-    <section className="relative min-h-screen flex flex-col justify-center px-6 md:px-12 pt-24 pb-16 overflow-hidden">
-      {/* Background gradient blobs */}
-      <div className="absolute top-1/4 -left-40 w-96 h-96 rounded-full bg-indigo-600/10 blur-[120px] pointer-events-none" />
-      <div className="absolute bottom-1/4 -right-40 w-96 h-96 rounded-full bg-violet-600/10 blur-[120px] pointer-events-none" />
-
-      <div className="max-w-6xl mx-auto w-full">
-        {/* Availability badge */}
-        <motion.div {...fadeUp(0.1)} className="mb-8">
-          <span className="inline-flex items-center gap-2 text-xs tracking-widest uppercase text-white/40 border border-white/10 rounded-full px-4 py-2">
-            <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
-            Available for work
-          </span>
-        </motion.div>
-
-        {/* Main heading */}
-        <motion.h1
-          {...fadeUp(0.2)}
-          className="text-5xl md:text-7xl lg:text-8xl font-bold leading-[1.05] tracking-tight mb-6"
-        >
-          Creative Designer
-          <br />
-          <span className="text-white/25">&</span>{" "}
-          <span className="bg-gradient-to-r from-indigo-400 to-violet-400 bg-clip-text text-transparent">
-            Developer
-          </span>
-        </motion.h1>
-
-        {/* Sub line */}
-        <motion.p
-          {...fadeUp(0.35)}
-          className="text-base md:text-lg text-white/40 max-w-xl leading-relaxed mb-12"
-        >
-          I&apos;m Diksha Sharma — I craft digital experiences that blend
-          aesthetic precision with purposeful engineering.
-        </motion.p>
-
-        {/* CTAs */}
-        <motion.div {...fadeUp(0.45)} className="flex flex-wrap items-center gap-4">
-          <button
-            onClick={() => document.getElementById("work")?.scrollIntoView({ behavior: "smooth" })}
-            className="px-7 py-3.5 bg-white text-black text-sm font-medium rounded-full hover:bg-white/90 transition-all duration-200"
-          >
-            View my work
-          </button>
-          <button
-            onClick={() => document.getElementById("contact")?.scrollIntoView({ behavior: "smooth" })}
-            className="px-7 py-3.5 border border-white/15 text-white/70 text-sm rounded-full hover:border-white/40 hover:text-white transition-all duration-200"
-          >
-            Get in touch
-          </button>
-        </motion.div>
-
-        {/* Stats row */}
-        <motion.div
-          {...fadeUp(0.55)}
-          className="mt-20 flex flex-wrap gap-10 border-t border-white/5 pt-10"
-        >
-          {[
-            { value: "3+", label: "Years experience" },
-            { value: "20+", label: "Projects delivered" },
-            { value: "15+", label: "Happy clients" },
-          ].map((stat) => (
-            <div key={stat.label}>
-              <p className="text-3xl font-bold mb-1">{stat.value}</p>
-              <p className="text-xs text-white/40 tracking-wide uppercase">{stat.label}</p>
-            </div>
-          ))}
-        </motion.div>
-      </div>
-
-      {/* Scroll cue */}
+    <section id="home" className="px-4 md:px-8 pb-6">
+      {/* Dark hero card */}
       <motion.div
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ delay: 1.2 }}
-        className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 text-white/20"
+        initial={{ opacity: 0, y: 30 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.6 }}
+        className="relative bg-[#1a1a1a] rounded-3xl overflow-hidden min-h-[580px] flex flex-col justify-between p-8 md:p-12"
       >
-        <span className="text-xs tracking-widest uppercase">Scroll</span>
-        <ArrowDown size={14} className="animate-bounce" />
+        {/* Top row: greeting + tools */}
+        <div className="flex items-start justify-between">
+          {/* Left: greeting + heading + button */}
+          <div className="flex flex-col gap-6 z-10 max-w-[480px]">
+            <div className="flex items-center gap-2">
+              <span className="text-[#CCFF00] font-medium text-base">Hey 👋 I&apos;m Diksha</span>
+            </div>
+            <h1 className="text-white text-5xl md:text-6xl lg:text-7xl font-bold leading-[1.05]">
+              Designer &amp;<br />Developer
+            </h1>
+            <button
+              onClick={() => document.getElementById("contact")?.scrollIntoView({ behavior: "smooth" })}
+              className="w-fit px-8 py-3.5 bg-[#CCFF00] text-black font-semibold rounded-full hover:bg-[#b8f000] transition-all text-sm"
+            >
+              Hire Me
+            </button>
+          </div>
+
+          {/* Right: tools grid */}
+          <div className="hidden md:grid grid-cols-3 gap-2 z-10">
+            {tools.map((tool) => (
+              <div
+                key={tool.label}
+                className={`w-12 h-12 rounded-xl ${tool.bg} flex items-center justify-center text-xl`}
+                title={tool.label}
+              >
+                {tool.icon}
+              </div>
+            ))}
+          </div>
+        </div>
+
+        {/* Center photo — absolutely positioned */}
+        <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
+          <div className="w-64 md:w-80 h-full flex items-end justify-center">
+            {/* Placeholder silhouette — replace src with your photo */}
+            <div className="w-56 md:w-72 h-[420px] bg-gradient-to-t from-[#2a2a2a] to-[#444] rounded-t-full flex items-end justify-center overflow-hidden">
+              <div className="w-full h-full bg-gradient-to-br from-[#333] to-[#1a1a1a] flex items-center justify-center">
+                <span className="text-6xl opacity-20">👤</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* Bottom row: bio + stats */}
+        <div className="flex flex-col md:flex-row items-start md:items-end justify-between gap-6 z-10 mt-auto pt-32">
+          {/* Bio */}
+          <p className="text-gray-400 text-sm max-w-[220px] leading-relaxed">
+            Lead product designer and developer crafting beautiful digital experiences.
+          </p>
+
+          {/* Stats */}
+          <div className="flex gap-10">
+            {[
+              { value: "3+",  label: "Years of experience" },
+              { value: "20+", label: "Happy clients" },
+              { value: "50+", label: "Projects done" },
+            ].map((stat) => (
+              <div key={stat.label} className="border-t border-gray-600 pt-3">
+                <p className="text-white text-3xl font-bold">{stat.value}</p>
+                <p className="text-gray-500 text-xs mt-1">{stat.label}</p>
+              </div>
+            ))}
+          </div>
+        </div>
       </motion.div>
     </section>
   );
