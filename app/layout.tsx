@@ -13,9 +13,9 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Diksha Sharma — Designer & Developer",
+  title: "Diksha Sharma — Full-Stack Developer & Product Builder",
   description:
-    "Portfolio of Diksha Sharma, a creative designer and developer crafting pixel-perfect digital experiences.",
+    "Portfolio of Diksha Sharma — full-stack developer who builds end to end, from the data layer to the thing you actually touch.",
 };
 
 export default function RootLayout({
