@@ -1,7 +1,6 @@
 "use client";
 
 import { motion } from "framer-motion";
-import Image from "next/image";
 
 const tools = [
   { label: "React",      icon: "⚛️" },
@@ -19,20 +18,15 @@ export default function Hero() {
         initial={{ opacity: 0, y: 30 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.6 }}
-        className="relative bg-[#111] rounded-3xl overflow-hidden"
-        style={{ minHeight: "580px" }}
+        className="relative rounded-3xl overflow-hidden"
+        style={{
+          minHeight: "580px",
+          backgroundColor: "#111",
+          backgroundImage: "url('/Gemini_Generated_Image_qnurgrqnurgrqnur.png')",
+          backgroundSize: "cover",
+          backgroundPosition: "center 15%",
+        }}
       >
-        {/* ── Full-bleed photo ── */}
-        <div className="absolute inset-0">
-          <Image
-            src="/Gemini_Generated_Image_qnurgrqnurgrqnur.png"
-            alt="Diksha Sharma"
-            fill
-            className="object-cover object-[center_15%]"
-            priority
-          />
-        </div>
-
         {/* ── Gradient overlays to blend photo edges into card bg ── */}
         {/* Left fade */}
         <div className="absolute inset-0 bg-gradient-to-r from-[#111] via-[#111]/70 to-transparent" style={{ width: "45%" }} />
