@@ -22,30 +22,32 @@ export default function Hero() {
         className="relative bg-[#111] rounded-3xl overflow-hidden"
         style={{ minHeight: "580px" }}
       >
-        {/* ── Full-height photo in the center ── */}
-        <div
-          className="absolute inset-0 flex justify-center"
-          style={{
-            maskImage:
-              "radial-gradient(ellipse 50% 100% at 50% 50%, black 40%, transparent 80%)",
-            WebkitMaskImage:
-              "radial-gradient(ellipse 50% 100% at 50% 50%, black 40%, transparent 80%)",
-          }}
-        >
-          <div className="relative w-[420px] h-full">
-            <Image
-              src="/Gemini_Generated_Image_qnurgrqnurgrqnur.png"
-              alt="Diksha Sharma"
-              fill
-              className="object-cover object-[center_20%]"
-              priority
-            />
-          </div>
+        {/* ── Full-bleed photo ── */}
+        <div className="absolute inset-0">
+          <Image
+            src="/Gemini_Generated_Image_qnurgrqnurgrqnur.png"
+            alt="Diksha Sharma"
+            fill
+            className="object-cover object-[center_15%]"
+            priority
+          />
         </div>
 
-        {/* ── Content layer on top ── */}
-        <div className="relative z-10 flex flex-col justify-between h-full p-8 md:p-12" style={{ minHeight: "580px" }}>
+        {/* ── Gradient overlays to blend photo edges into card bg ── */}
+        {/* Left fade */}
+        <div className="absolute inset-0 bg-gradient-to-r from-[#111] via-[#111]/70 to-transparent" style={{ width: "45%" }} />
+        {/* Right fade */}
+        <div className="absolute inset-y-0 right-0 bg-gradient-to-l from-[#111] via-[#111]/60 to-transparent" style={{ width: "35%" }} />
+        {/* Bottom fade */}
+        <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-[#111] via-[#111]/50 to-transparent" style={{ height: "35%" }} />
+        {/* Top fade */}
+        <div className="absolute inset-x-0 top-0 bg-gradient-to-b from-[#111]/80 to-transparent" style={{ height: "20%" }} />
 
+        {/* ── Content on top ── */}
+        <div
+          className="relative z-10 flex flex-col justify-between p-8 md:p-12"
+          style={{ minHeight: "580px" }}
+        >
           {/* Top row */}
           <div className="flex items-start justify-between">
             {/* Left */}
@@ -64,7 +66,7 @@ export default function Hero() {
             </div>
 
             {/* Right — Experienced in */}
-            <div className="hidden md:flex flex-col gap-3 bg-[#1e1e1e]/90 backdrop-blur-sm rounded-2xl p-4">
+            <div className="hidden md:flex flex-col gap-3 bg-[#1a1a1a]/80 backdrop-blur-sm rounded-2xl p-4">
               <p className="text-xs text-gray-400">Experienced in</p>
               <div className="grid grid-cols-3 gap-2">
                 {tools.map((tool) => (
@@ -81,7 +83,7 @@ export default function Hero() {
           </div>
 
           {/* Bottom row */}
-          <div className="flex flex-col md:flex-row items-start md:items-end justify-between gap-6 mt-8">
+          <div className="flex flex-col md:flex-row items-start md:items-end justify-between gap-6">
             <p className="text-gray-400 text-sm max-w-[200px] leading-relaxed">
               I like builds where the interesting problem is hidden underneath something that looks simple. End to end — data layer to the thing you touch.
             </p>
