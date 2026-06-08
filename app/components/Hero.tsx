@@ -21,21 +21,16 @@ export default function Hero() {
         className="relative rounded-3xl overflow-hidden"
         style={{
           minHeight: "580px",
-          backgroundColor: "#111",
+          backgroundColor: "#000",
           backgroundImage: "url('/Gemini_Generated_Image_qnurgrqnurgrqnur.png')",
           backgroundSize: "cover",
-          backgroundPosition: "center 15%",
+          backgroundPosition: "center top",
         }}
       >
-        {/* ── Gradient overlays to blend photo edges into card bg ── */}
-        {/* Left fade */}
-        <div className="absolute inset-0 bg-gradient-to-r from-[#111] via-[#111]/70 to-transparent" style={{ width: "45%" }} />
-        {/* Right fade */}
-        <div className="absolute inset-y-0 right-0 bg-gradient-to-l from-[#111] via-[#111]/60 to-transparent" style={{ width: "35%" }} />
-        {/* Bottom fade */}
-        <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-[#111] via-[#111]/50 to-transparent" style={{ height: "35%" }} />
-        {/* Top fade */}
-        <div className="absolute inset-x-0 top-0 bg-gradient-to-b from-[#111]/80 to-transparent" style={{ height: "20%" }} />
+        {/* Subtle left fade so text is readable */}
+        <div className="absolute inset-y-0 left-0 w-[40%] bg-gradient-to-r from-black/80 to-transparent pointer-events-none" />
+        {/* Subtle bottom fade */}
+        <div className="absolute inset-x-0 bottom-0 h-[25%] bg-gradient-to-t from-black/70 to-transparent pointer-events-none" />
 
         {/* ── Content on top ── */}
         <div
@@ -60,14 +55,14 @@ export default function Hero() {
             </div>
 
             {/* Right — Experienced in */}
-            <div className="hidden md:flex flex-col gap-3 bg-[#1a1a1a]/80 backdrop-blur-sm rounded-2xl p-4">
+            <div className="hidden md:flex flex-col gap-3 bg-black/60 backdrop-blur-sm rounded-2xl p-4 border border-white/5">
               <p className="text-xs text-gray-400">Experienced in</p>
               <div className="grid grid-cols-3 gap-2">
                 {tools.map((tool) => (
                   <div
                     key={tool.label}
                     title={tool.label}
-                    className="w-11 h-11 rounded-xl bg-[#2a2a2a] flex items-center justify-center text-base"
+                    className="w-11 h-11 rounded-xl bg-white/10 flex items-center justify-center text-base"
                   >
                     {tool.icon}
                   </div>
