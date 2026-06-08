@@ -2,135 +2,88 @@
 
 import { motion, useInView } from "framer-motion";
 import { useRef } from "react";
-import { ArrowUpRight } from "lucide-react";
 
 const projects = [
   {
-    number: "01",
     title: "Lumina — Brand & Web",
     category: "UI Design / Development",
-    description:
-      "Full brand identity and marketing site for a SaaS analytics platform. Focused on clarity and conversion.",
-    tags: ["Next.js", "Figma", "Tailwind"],
-    color: "from-indigo-900/30 to-violet-900/10",
     year: "2024",
+    image: "https://images.unsplash.com/photo-1467232004584-a241de8bcf5d?w=800&q=80",
   },
   {
-    number: "02",
     title: "Pulse — Dashboard UI",
     category: "Product Design",
-    description:
-      "Data-heavy admin dashboard redesign for a fintech startup — improved task completion by 40%.",
-    tags: ["React", "TypeScript", "Framer"],
-    color: "from-emerald-900/20 to-teal-900/10",
     year: "2024",
+    image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&q=80",
   },
   {
-    number: "03",
     title: "Orbit — Mobile App",
     category: "UX / Mobile",
-    description:
-      "Habit tracking app with a focus on calm UX and delightful micro-interactions. Designed & prototyped in Figma.",
-    tags: ["Figma", "Prototyping", "iOS"],
-    color: "from-rose-900/20 to-pink-900/10",
     year: "2023",
+    image: "https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?w=800&q=80",
   },
   {
-    number: "04",
     title: "Forge — Dev Portfolio",
     category: "Web Development",
-    description:
-      "Custom portfolio site for a senior engineer. High performance, animated, and fully accessible.",
-    tags: ["Next.js", "GSAP", "Vercel"],
-    color: "from-amber-900/20 to-orange-900/10",
     year: "2023",
+    image: "https://images.unsplash.com/photo-1555066931-4365d14bab8c?w=800&q=80",
   },
 ];
 
 export default function Work() {
   const ref = useRef(null);
-  const inView = useInView(ref, { once: true, margin: "-100px" });
+  const inView = useInView(ref, { once: true, margin: "-80px" });
 
   return (
-    <section id="work" ref={ref} className="px-6 md:px-12 py-28">
-      <div className="max-w-6xl mx-auto">
-        {/* Header */}
+    <section id="work" ref={ref} className="px-8 md:px-12 py-16">
+      <div className="max-w-7xl mx-auto">
+
+        {/* Section header */}
         <motion.div
-          initial={{ opacity: 0, y: 30 }}
+          initial={{ opacity: 0, y: 20 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.6 }}
-          className="flex flex-col md:flex-row md:items-end justify-between gap-4 mb-16"
+          transition={{ duration: 0.5 }}
+          className="flex flex-col md:flex-row md:items-end justify-between gap-4 mb-12"
         >
-          <div>
-            <p className="text-xs tracking-widest uppercase text-white/30 mb-3">Selected work</p>
-            <h2 className="text-4xl md:text-5xl font-bold">Projects</h2>
-          </div>
-          <p className="text-white/40 text-sm max-w-xs">
-            A curated selection of recent client work and personal projects.
-          </p>
+          <h2 className="text-5xl md:text-6xl font-bold leading-tight">
+            Check out our<br />awesome showcase!
+          </h2>
+          <button className="w-fit px-6 py-2.5 border border-gray-200 rounded-full text-sm hover:bg-gray-50 transition-colors">
+            View all Cases
+          </button>
         </motion.div>
 
-        {/* Project list */}
-        <div className="flex flex-col gap-4">
+        {/* Project grid */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           {projects.map((project, i) => (
-            <ProjectCard key={project.number} project={project} index={i} parentInView={inView} />
+            <motion.div
+              key={project.title}
+              initial={{ opacity: 0, y: 20 }}
+              animate={inView ? { opacity: 1, y: 0 } : {}}
+              transition={{ duration: 0.5, delay: i * 0.08 }}
+              className="group border border-gray-100 rounded-2xl overflow-hidden hover:border-gray-300 transition-all cursor-pointer"
+            >
+              <div className="overflow-hidden">
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img
+                  src={project.image}
+                  alt={project.title}
+                  className="w-full h-56 object-cover group-hover:scale-105 transition-transform duration-500"
+                />
+              </div>
+              <div className="p-6 flex items-center justify-between">
+                <div>
+                  <p className="font-semibold">{project.title}</p>
+                  <p className="text-sm text-gray-400 mt-0.5">{project.category} · {project.year}</p>
+                </div>
+                <span className="w-9 h-9 rounded-full border border-gray-200 flex items-center justify-center text-sm group-hover:bg-black group-hover:text-white group-hover:border-black transition-all">
+                  ↗
+                </span>
+              </div>
+            </motion.div>
           ))}
         </div>
       </div>
     </section>
-  );
-}
-
-function ProjectCard({
-  project,
-  index,
-  parentInView,
-}: {
-  project: (typeof projects)[0];
-  index: number;
-  parentInView: boolean;
-}) {
-  return (
-    <motion.div
-      initial={{ opacity: 0, y: 30 }}
-      animate={parentInView ? { opacity: 1, y: 0 } : {}}
-      transition={{ duration: 0.5, delay: index * 0.1 }}
-      className={`group relative border border-white/8 rounded-2xl p-6 md:p-8 bg-gradient-to-br ${project.color} hover:border-white/20 transition-all duration-300 cursor-pointer overflow-hidden`}
-    >
-      <div className="flex flex-col md:flex-row md:items-center gap-6">
-        {/* Number + meta */}
-        <div className="flex-shrink-0 w-12">
-          <span className="text-xs text-white/20 font-mono">{project.number}</span>
-        </div>
-
-        {/* Content */}
-        <div className="flex-1">
-          <div className="flex flex-wrap items-center gap-3 mb-2">
-            <h3 className="text-xl font-semibold group-hover:text-white transition-colors">
-              {project.title}
-            </h3>
-            <span className="text-xs text-white/30 border border-white/10 rounded-full px-3 py-0.5">
-              {project.category}
-            </span>
-          </div>
-          <p className="text-sm text-white/45 leading-relaxed mb-4">{project.description}</p>
-          <div className="flex flex-wrap gap-2">
-            {project.tags.map((tag) => (
-              <span key={tag} className="text-xs text-white/35 bg-white/5 px-3 py-1 rounded-full">
-                {tag}
-              </span>
-            ))}
-          </div>
-        </div>
-
-        {/* Year + arrow */}
-        <div className="flex-shrink-0 flex flex-col items-end gap-3">
-          <span className="text-xs text-white/25 font-mono">{project.year}</span>
-          <div className="w-8 h-8 rounded-full border border-white/15 flex items-center justify-center group-hover:bg-white group-hover:border-white transition-all duration-200">
-            <ArrowUpRight size={14} className="group-hover:text-black transition-colors" />
-          </div>
-        </div>
-      </div>
-    </motion.div>
   );
 }
